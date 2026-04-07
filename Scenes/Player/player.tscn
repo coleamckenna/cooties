@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://drqmqwoh706dl"]
+[gd_scene format=3 uid="uid://drqmqwoh706dl"]
 
 [ext_resource type="Script" uid="uid://ds0q8ob5wehgr" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="SpriteFrames" uid="uid://cfy6mnakd0y3w" path="res://Scenes/Player/CharacterSprites/pink_man.tres" id="2_a3d8c"]
 [ext_resource type="Theme" uid="uid://oxn4h4ypbx2q" path="res://cooties.tres" id="3_xpcdj"]
 [ext_resource type="AudioStream" uid="uid://d0aeo3xo6gx6e" path="res://Assets/Audio/SFX/249583__ycbcr__short-definite-fart.ogg" id="4_mtuoh"]
+[ext_resource type="Script" uid="uid://bfe6uknpy2i3a" path="res://Scenes/AudioManager/audio_manager.gd" id="5_htcer"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jlvik"]
 properties/0/path = NodePath(".:position")
@@ -46,16 +47,16 @@ radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7g0yx"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite_2d", "player_name")]
+[node name="Player" type="CharacterBody2D" unique_id=1675712400 node_paths=PackedStringArray("animated_sprite_2d", "player_name")]
 script = ExtResource("1_a3d8c")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 player_name = NodePath("PlayerName")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=317785208]
 replication_config = SubResource("SceneReplicationConfig_jlvik")
 visibility_update_mode = 1
 
-[node name="PlayerName" type="Label" parent="."]
+[node name="PlayerName" type="Label" parent="." unique_id=1363476883]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -70,32 +71,40 @@ theme = ExtResource("3_xpcdj")
 text = "NAME"
 horizontal_alignment = 1
 
-[node name="Infected" type="GPUParticles2D" parent="."]
+[node name="Infected" type="GPUParticles2D" parent="." unique_id=1235594908]
 amount = 30
 lifetime = 1.2
 process_material = SubResource("ParticleProcessMaterial_htcer")
 
-[node name="InfectionArea" type="Area2D" parent="."]
+[node name="InfectionArea" type="Area2D" parent="." unique_id=1160920582]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InfectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfectionArea" unique_id=1378570041]
 shape = SubResource("CircleShape2D_xpcdj")
 debug_color = Color(0, 1, 0, 0.42000002)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1093267345]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_7g0yx")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1123245644]
 sprite_frames = ExtResource("2_a3d8c")
 animation = &"wall_jump"
 autoplay = "idle"
 
-[node name="WallCheckLeft" type="RayCast2D" parent="."]
+[node name="WallCheckLeft" type="RayCast2D" parent="." unique_id=1939673118]
 target_position = Vector2(-15, 0)
 
-[node name="WallCheckRight" type="RayCast2D" parent="."]
+[node name="WallCheckRight" type="RayCast2D" parent="." unique_id=441843045]
 target_position = Vector2(15, 0)
 
-[node name="FartSound" type="AudioStreamPlayer" parent="."]
+[node name="FartSound" type="AudioStreamPlayer" parent="." unique_id=313477076]
 stream = ExtResource("4_mtuoh")
 volume_db = -15.0
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=373955897]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1140674263]
+
+[node name="RecordAudioManager" type="AudioStreamPlayer" parent="." unique_id=1527980378]
+script = ExtResource("5_htcer")
+metadata/_custom_type_script = "uid://bfe6uknpy2i3a"

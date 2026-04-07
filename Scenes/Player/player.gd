@@ -46,6 +46,8 @@ func _ready() -> void:
 	# Server-only infection collision detection
 	if multiplayer.is_server() and infection_area:
 		infection_area.body_entered.connect(_on_infection_area_body_entered)
+	
+	
 
 
 func _physics_process(delta: float) -> void:
